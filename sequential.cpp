@@ -14,14 +14,13 @@ void matTranspose(vector<vector<float>> &raw, vector<vector<float>> &transposed,
     }
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
     FILE* f = fopen("sequentialTranspo.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),omp_get_num_threads(), timeElapsed);
+    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
     fclose(f);
 
-
-    printf("SEQUENTIAL TRANSPOSITION: %lf\n", timeElapsed);
+    //printf("SEQUENTIAL TRANSPOSITION: %lf\n", timeElapsed);
 }
 
 bool checkSym(vector<vector<float>> &matrix,int size)
@@ -40,11 +39,11 @@ bool checkSym(vector<vector<float>> &matrix,int size)
 
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
-    printf("SEQUENTIAL CHECK: %lf\n", timeElapsed);
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
+    //printf("SEQUENTIAL CHECK: %lf\n", timeElapsed);
 
     FILE* f = fopen("sequentialCheck.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),omp_get_num_threads(), timeElapsed);
+    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
     fclose(f);
 
     return isSymmetric;

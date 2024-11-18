@@ -7,15 +7,9 @@
 #include <random>
 #include <omp.h>
 
-//USARE
-
-#define DIVIDER 100
 #define BILLION  1000000000L
 using namespace std;
 
-
-
-using namespace std;
 void ini_matrix(vector<vector<float>> &matrix,int size);
 void print_matrix(vector<vector<float>> &matrix,int size);
 

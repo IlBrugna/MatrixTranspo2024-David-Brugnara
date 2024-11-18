@@ -19,12 +19,12 @@ void matTransposeImp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
     FILE* f = fopen("implicitTranspo.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),omp_get_num_threads(), timeElapsed);
+    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
     fclose(f);
-    printf("IMPLICIT TRANSPOSITION: %lf\n", timeElapsed);
+    //printf("IMPLICIT TRANSPOSITION: %lf\n", timeElapsed);
 }
 
 bool checkSymImp(vector<vector<float>> &matrix,int size)
@@ -44,10 +44,10 @@ bool checkSymImp(vector<vector<float>> &matrix,int size)
 
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
     FILE* f = fopen("implicitCheck.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),omp_get_num_threads(), timeElapsed);
+    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
     fclose(f);
 
     printf("IMPLICIT CHECK: %lf\n", timeElapsed);

@@ -8,7 +8,7 @@
 
 /*
 gcc -fopenmp pi.c
-export OMP NUM THREADS=4; ./ a.out
+export OMP NUM THREADS=4; ./ a.out+
 */
 void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size)
 {
@@ -26,7 +26,7 @@ void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
 
     char *env_var = getenv("OMP_NUM_THREADS");
@@ -54,7 +54,7 @@ bool checkSymOmp(vector<vector<float>> &matrix,int size)
 
     clock_gettime( CLOCK_REALTIME, &stop);
 
-    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION; //VOLENDO (double)BILLION
+    double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
     printf("PARALLEL CHECK: %lf\n", timeElapsed);
 
     char *env_var = getenv("OMP_NUM_THREADS");

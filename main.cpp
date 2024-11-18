@@ -1,14 +1,16 @@
 //#include <complex>
 #include <iostream>
 #include "matrix_transpo.h"
-#include <fstream> // PER SCRIVERE SU FILE
+
 /*to always be on the same node, inside pbs script select ncpus64.... export omp... /.ex
  *average not inside the code, we need to remove outlayers
  * 96 max threads
  * speedup and efficency complusory
  * cache miss?
  * qsub -I -q short_cpuQ -l select=1:ncpus=64:ompthreads=64:mem=1mb
- * rimuovere numthread da txt che non siano parallel
+ * aggiungere controlli di sicurezza
+ * aggiungere controllo delle matrici
+ * block structure?
  */
 
 int main(int argc, char *argv[])
@@ -49,12 +51,10 @@ void ini_matrix(vector<vector<float>> &matrix, int size){
             matrix[i][j]=dist(rd);
         }
     }
-
-    /*FILE* f = fopen("matrix.txt","a");
-    fprintf(f,"ciao\n");
-    fclose(f);*/
 }
 
+
+/*
 void print_matrix(vector<vector<float>> &matrix,int size)
 {
     for (int i=0;i<size;i++)
@@ -64,5 +64,5 @@ void print_matrix(vector<vector<float>> &matrix,int size)
             printf("%i %i value is: %.2f\n",i,j,matrix[i][j]);
         }
     }
-}
+}*/
 
