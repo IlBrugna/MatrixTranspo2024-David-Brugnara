@@ -50,6 +50,6 @@ bool checkSymImp(vector<vector<float>> &matrix,int size)
     fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
     fclose(f);
 
-    printf("IMPLICIT CHECK: %lf\n", timeElapsed);
+    //printf("IMPLICIT CHECK: %lf\n", timeElapsed);
     return isSymmetric;
 }

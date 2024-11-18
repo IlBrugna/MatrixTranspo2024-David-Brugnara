@@ -8,7 +8,7 @@
 
 /*
 gcc -fopenmp pi.c
-export OMP NUM THREADS=4; ./ a.out+
+export OMP_NUM_THREADS=4; ./ a.out+
 */
 void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size)
 {
@@ -34,7 +34,7 @@ void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transpos
     fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),atoi(env_var), timeElapsed);
     fclose(f);
 
-    printf("PARALLEL TRANSPOSITION: %lf\n", timeElapsed);
+    //printf("PARALLEL TRANSPOSITION: %lf\n", timeElapsed);
 }
 
 bool checkSymOmp(vector<vector<float>> &matrix,int size)
@@ -55,7 +55,7 @@ bool checkSymOmp(vector<vector<float>> &matrix,int size)
     clock_gettime( CLOCK_REALTIME, &stop);
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
-    printf("PARALLEL CHECK: %lf\n", timeElapsed);
+    //printf("PARALLEL CHECK: %lf\n", timeElapsed);
 
     char *env_var = getenv("OMP_NUM_THREADS");
     FILE* f = fopen("parallelCheck.txt","a+");

@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
 {
 
     const int size = pow (2,atoi(argv[1]));
-    cout<<"size: " << size <<endl;;
     vector<vector<float>> M( size,vector<float>(size,1)); //TOGLIERE IL VALORE DI INI!! MESSO SOLO PER CONTROLLARE SE SYMM
     vector<vector<float>> T( size,vector<float>(size));
     ini_matrix(M,size);
