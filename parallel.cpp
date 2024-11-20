@@ -39,7 +39,7 @@ void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
 bool checkSymOmp(vector<vector<float>> &matrix,int size)
 {
-    bool isSymmetric = false;
+    bool isSymmetric = true;
     timespec start, stop;
     clock_gettime( CLOCK_REALTIME, &start);
 #pragma omp parallel for collapse(2) reduction(&:isSymmetric)

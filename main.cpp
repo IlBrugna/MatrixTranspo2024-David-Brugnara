@@ -12,7 +12,7 @@
  * aggiungere controllo delle matrici
  * block structure?
  */
-
+#define REPS 5
 int main(int argc, char *argv[])
 {
 
@@ -26,15 +26,15 @@ int main(int argc, char *argv[])
     /*
     printf("is symm: %d\n",checkSymImp(M,size));
     matTransposeImp(M,T,size);*/
+    for (int i=0;i<REPS;i++) {
+        matTranspose(M,T,size);
+        matTransposeImp(M,T,size);
+        matTransposeOmp(M,T,size);
 
-    matTranspose(M,T,size);
-    matTransposeImp(M,T,size);
-    matTransposeOmp(M,T,size);
-
-    checkSym(M,size);
-    checkSymImp(M,size);
-    checkSymOmp(M,size);
-
+        checkSym(M,size);
+        checkSymImp(M,size);
+        checkSymOmp(M,size);
+    }
     return 0;
 }
 
