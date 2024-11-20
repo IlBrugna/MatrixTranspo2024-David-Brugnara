@@ -1,0 +1,139 @@
+#!/bin/bash
+# Job name
+#PBS -N helloc
+# Output files
+#PBS -o ./matrix.o
+#PBS -e ./matrix.e
+# Queue name
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=6:00:00
+# Number of nodes, cpus, and amount of memory
+#PBS -l select=1:ncpus=50:mem=20mb
+
+# Modules for C
+module load gcc91
+# Define gcc and g++ to use the version 9.1.0
+g++() {
+    g++-9.1.0 "$@"
+}
+
+g++ --version
+
+
+echo "Job running on: $(hostname)"
+
+# Select the working directory (change this line)
+cd /home/david.brugnara/Matrix/
+
+# The code should be compiled before submitting the job
+# gcc -o hello hello.c
+
+# Run hello
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicit.cpp -c -o implicit.o -O2 -march=native -ftree-vectorize
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicit.o main.o -o matrix.out -fopenmp
+
+export OMP_NUM_THREADS=1; ./matrix.out 4
+export OMP_NUM_THREADS=2; ./matrix.out 4
+export OMP_NUM_THREADS=4; ./matrix.out 4
+export OMP_NUM_THREADS=8; ./matrix.out 4
+export OMP_NUM_THREADS=16; ./matrix.out 4
+export OMP_NUM_THREADS=32; ./matrix.out 4
+export OMP_NUM_THREADS=64; ./matrix.out 4
+export OMP_NUM_THREADS=96; ./matrix.out 4
+
+export OMP_NUM_THREADS=1; ./matrix.out 5
+export OMP_NUM_THREADS=2; ./matrix.out 5
+export OMP_NUM_THREADS=4; ./matrix.out 5
+export OMP_NUM_THREADS=8; ./matrix.out 5
+export OMP_NUM_THREADS=16; ./matrix.out 5
+export OMP_NUM_THREADS=32; ./matrix.out 5
+export OMP_NUM_THREADS=64; ./matrix.out 5
+export OMP_NUM_THREADS=96; ./matrix.out 5
+
+export OMP_NUM_THREADS=1; ./matrix.out 6
+export OMP_NUM_THREADS=2; ./matrix.out 6
+export OMP_NUM_THREADS=4; ./matrix.out 6
+export OMP_NUM_THREADS=8; ./matrix.out 6
+export OMP_NUM_THREADS=16; ./matrix.out 6
+export OMP_NUM_THREADS=32; ./matrix.out 6
+export OMP_NUM_THREADS=64; ./matrix.out 6
+export OMP_NUM_THREADS=96; ./matrix.out 6
+
+export OMP_NUM_THREADS=1; ./matrix.out 7
+export OMP_NUM_THREADS=2; ./matrix.out 7
+export OMP_NUM_THREADS=4; ./matrix.out 7
+export OMP_NUM_THREADS=8; ./matrix.out 7
+export OMP_NUM_THREADS=16; ./matrix.out 7
+export OMP_NUM_THREADS=32; ./matrix.out 7
+export OMP_NUM_THREADS=64; ./matrix.out 7
+export OMP_NUM_THREADS=96; ./matrix.out 7
+
+export OMP_NUM_THREADS=1; ./matrix.out 8
+export OMP_NUM_THREADS=2; ./matrix.out 8
+export OMP_NUM_THREADS=4; ./matrix.out 8
+export OMP_NUM_THREADS=8; ./matrix.out 8
+export OMP_NUM_THREADS=16; ./matrix.out 8
+export OMP_NUM_THREADS=32; ./matrix.out 8
+export OMP_NUM_THREADS=64; ./matrix.out 8
+export OMP_NUM_THREADS=96; ./matrix.out 8
+
+export OMP_NUM_THREADS=1; ./matrix.out 9
+export OMP_NUM_THREADS=2; ./matrix.out 9
+export OMP_NUM_THREADS=4; ./matrix.out 9
+export OMP_NUM_THREADS=8; ./matrix.out 9
+export OMP_NUM_THREADS=16; ./matrix.out 9
+export OMP_NUM_THREADS=32; ./matrix.out 9
+export OMP_NUM_THREADS=64; ./matrix.out 9
+export OMP_NUM_THREADS=96; ./matrix.out 9
+
+export OMP_NUM_THREADS=1; ./matrix.out 10
+export OMP_NUM_THREADS=2; ./matrix.out 10
+export OMP_NUM_THREADS=4; ./matrix.out 10
+export OMP_NUM_THREADS=8; ./matrix.out 10
+export OMP_NUM_THREADS=16; ./matrix.out 10
+export OMP_NUM_THREADS=32; ./matrix.out 10
+export OMP_NUM_THREADS=64; ./matrix.out 10
+export OMP_NUM_THREADS=96; ./matrix.out 10
+
+export OMP_NUM_THREADS=1; ./matrix.out 11
+export OMP_NUM_THREADS=2; ./matrix.out 11
+export OMP_NUM_THREADS=4; ./matrix.out 11
+export OMP_NUM_THREADS=8; ./matrix.out 11
+export OMP_NUM_THREADS=16; ./matrix.out 11
+export OMP_NUM_THREADS=32; ./matrix.out 11
+export OMP_NUM_THREADS=64; ./matrix.out 11
+export OMP_NUM_THREADS=96; ./matrix.out 11
+
+export OMP_NUM_THREADS=1; ./matrix.out 12
+export OMP_NUM_THREADS=2; ./matrix.out 12
+export OMP_NUM_THREADS=4; ./matrix.out 12
+export OMP_NUM_THREADS=8; ./matrix.out 12
+export OMP_NUM_THREADS=16; ./matrix.out 12
+export OMP_NUM_THREADS=32; ./matrix.out 12
+export OMP_NUM_THREADS=64; ./matrix.out 12
+export OMP_NUM_THREADS=96; ./matrix.out 12
+
+export OMP_NUM_THREADS=1; ./matrix.out 13
+export OMP_NUM_THREADS=2; ./matrix.out 13
+export OMP_NUM_THREADS=4; ./matrix.out 13
+export OMP_NUM_THREADS=8; ./matrix.out 13
+export OMP_NUM_THREADS=16; ./matrix.out 13
+export OMP_NUM_THREADS=32; ./matrix.out 13
+export OMP_NUM_THREADS=64; ./matrix.out 13
+export OMP_NUM_THREADS=96; ./matrix.out 13
+
+export OMP_NUM_THREADS=1; ./matrix.out 14
+export OMP_NUM_THREADS=2; ./matrix.out 14
+export OMP_NUM_THREADS=4; ./matrix.out 14
+export OMP_NUM_THREADS=8; ./matrix.out 14
+export OMP_NUM_THREADS=16; ./matrix.out 14
+export OMP_NUM_THREADS=32; ./matrix.out 14
+export OMP_NUM_THREADS=64; ./matrix.out 14
+export OMP_NUM_THREADS=96; ./matrix.out 14
+
+
+#qstat -n id
