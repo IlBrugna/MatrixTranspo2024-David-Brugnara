@@ -2,14 +2,8 @@
 #include <iostream>
 #include "matrix_transpo.h"
 
-/*to always be on the same node, inside pbs script select ncpus64.... export omp... /.ex
- *average not inside the code, we need to remove outlayers
- * 96 max threads
- * speedup and efficency complusory
- * cache miss?
- * qsub -I -q short_cpuQ -l select=1:ncpus=64:ompthreads=64:mem=1mb
+/* cache miss?
  * aggiungere controlli di sicurezza
- * aggiungere controllo delle matrici
  * block structure?
  */
 #define REPS 5
@@ -17,15 +11,12 @@ int main(int argc, char *argv[])
 {
 
     const int size = pow (2,atoi(argv[1]));
-    vector<vector<float>> M( size,vector<float>(size,1)); //TOGLIERE IL VALORE DI INI!! MESSO SOLO PER CONTROLLARE SE SYMM
+    vector<vector<float>> M( size,vector<float>(size));
     vector<vector<float>> T( size,vector<float>(size));
     ini_matrix(M,size);
-    /*
-    printf("is symm: %d\n",checkSym(M,size));
-    matTranspose(M,T,size);*/
-    /*
-    printf("is symm: %d\n",checkSymImp(M,size));
-    matTransposeImp(M,T,size);*/
+
+//CORE
+/*
     for (int i=0;i<REPS;i++) {
         matTranspose(M,T,size);
         matTransposeImp(M,T,size);
@@ -35,6 +26,18 @@ int main(int argc, char *argv[])
         checkSymImp(M,size);
         checkSymOmp(M,size);
     }
+*/
+
+    for (int i=0;i<REPS;i++)
+    {
+        matTransposeTag(M,T,size);
+        matTransposeBlock(M,T,size);
+    }
+
+
+
+
+    //printf("is equal:%i ",ifEqual(4)); //SIMPLE CHECK TO VERIFY CODE IS ACTUALLY WORKING AS INTENDED
     return 0;
 }
 
@@ -50,6 +53,28 @@ void ini_matrix(vector<vector<float>> &matrix, int size){
             matrix[i][j]=dist(rd);
         }
     }
+}
+
+
+bool ifEqual(int size)
+{
+    vector<vector<float>> M( size,vector<float>(size));
+    vector<vector<float>> T1( size,vector<float>(size));
+    vector<vector<float>> T2( size,vector<float>(size));
+    ini_matrix(M,size);
+    bool isEqual = true;
+
+    matTranspose(M,T1,size);
+    matTransposeOmp(M,T2,size);
+    for (int i=0;i<size;i++)
+    {
+        for (int j=0;j<size;j++)
+        {
+            if (T1[i][j] != T2[i][j]) isEqual = false;
+        }
+    }
+
+    return isEqual;
 }
 
 

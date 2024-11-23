@@ -16,7 +16,6 @@ void matTransposeImp(vector<vector<float>> &raw, vector<vector<float>> &transpos
             transposed[i][j]=raw[j][i];
         }
     }
-
     clock_gettime( CLOCK_REALTIME, &stop);
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;

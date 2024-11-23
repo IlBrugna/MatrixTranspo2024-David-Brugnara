@@ -12,6 +12,7 @@ using namespace std;
 
 void ini_matrix(vector<vector<float>> &matrix,int size);
 void print_matrix(vector<vector<float>> &matrix,int size);
+bool ifEqual(int size);
 
 //SEQUENTIAL
 bool checkSym(vector<vector<float>> &matrix,int size);
@@ -25,4 +26,7 @@ void matTransposeImp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 bool checkSymOmp(vector<vector<float>> &matrix,int size);
 void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size);
 
+//TAGS/BLOCKBASED
+void matTransposeTag(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size);
+void matTransposeBlock(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size);
  #endif
