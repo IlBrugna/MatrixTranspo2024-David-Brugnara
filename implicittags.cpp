@@ -1,7 +1,4 @@
 #include "matrix_transpo.h"
-//g++ -c implicit.cpp -o implicit.o  -ftree-vectorize -O2
-//-march=native
-//block base tequinque
 #define blockSize 64
 
 void matTransposeTag(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size)
@@ -20,8 +17,8 @@ void matTransposeTag(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
-    FILE* f = fopen("tags.txt","a+");
-    fprintf(f,"%.f, %lf\n", log2(size), timeElapsed);
+    FILE* f = fopen("tags.csv","a+");
+    fprintf(f,"%.f;%lf\n", log2(size), timeElapsed);
     fclose(f);
     //printf("IMPLICIT TRANSPOSITION: %lf\n", timeElapsed);
 }
@@ -45,8 +42,8 @@ void matTransposeBlock(vector<vector<float>> &raw, vector<vector<float>> &transp
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
-    FILE* f = fopen("block.txt","a+");
-    fprintf(f,"%.f, %lf\n", log2(size), timeElapsed);
+    FILE* f = fopen("block.csv","a+");
+    fprintf(f,"%.f;%lf\n", log2(size), timeElapsed);
     fclose(f);
     //printf("IMPLICIT TRANSPOSITION: %lf\n", timeElapsed);
 }

@@ -1,7 +1,5 @@
 #include "matrix_transpo.h"
-//g++ -c implicit.cpp -o implicit.o  -ftree-vectorize -O2
-//-march=native
-//block base tequinque
+
 
 void matTransposeImp(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size)
 {
@@ -20,8 +18,8 @@ void matTransposeImp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
-    FILE* f = fopen("implicitTranspo.txt","a+");
-    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
+    FILE* f = fopen("implicitTranspo.csv","a+");
+    fprintf(f,"%.f;%lf\n", log2(size), timeElapsed);
     fclose(f);
     //printf("IMPLICIT TRANSPOSITION: %lf\n", timeElapsed);
 }
@@ -45,8 +43,8 @@ bool checkSymImp(vector<vector<float>> &matrix,int size)
 
     double timeElapsed=( stop.tv_sec - start.tv_sec ) + (double)( stop.tv_nsec - start.tv_nsec ) /BILLION;
 
-    FILE* f = fopen("implicitCheck.txt","a+");
-    fprintf(f,"n: %.f, time: %lf\n", log2(size), timeElapsed);
+    FILE* f = fopen("implicitCheck.csv","a+");
+    fprintf(f,"%.f;%lf\n", log2(size), timeElapsed);
     fclose(f);
 
     //printf("IMPLICIT CHECK: %lf\n", timeElapsed);

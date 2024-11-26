@@ -1,11 +1,6 @@
-//#include <complex>
 #include <iostream>
 #include "matrix_transpo.h"
 
-/* cache miss?
- * aggiungere controlli di sicurezza
- * block structure?
- */
 #define REPS 5
 int main(int argc, char *argv[])
 {
@@ -16,7 +11,7 @@ int main(int argc, char *argv[])
     ini_matrix(M,size);
 
 //CORE
-/*
+
     for (int i=0;i<REPS;i++) {
         matTranspose(M,T,size);
         matTransposeImp(M,T,size);
@@ -26,23 +21,23 @@ int main(int argc, char *argv[])
         checkSymImp(M,size);
         checkSymOmp(M,size);
     }
-*/
 
+
+
+    //CYCLE USED TO COMPARE DIFFERENT IMPLICIT IMPLEMENTATIONS
+    /*
     for (int i=0;i<REPS;i++)
     {
         matTransposeTag(M,T,size);
         matTransposeBlock(M,T,size);
     }
-
-
-
+ */
 
     //printf("is equal:%i ",ifEqual(4)); //SIMPLE CHECK TO VERIFY CODE IS ACTUALLY WORKING AS INTENDED
     return 0;
 }
 
 
-//SHOULD I PASS SIZE FOR REFERENCE OR SOMETHING ELSE?
 void ini_matrix(vector<vector<float>> &matrix, int size){
     std::random_device rd;
     std::uniform_real_distribution<float> dist(1.f,100.f);

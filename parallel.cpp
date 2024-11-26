@@ -1,15 +1,6 @@
 #include "matrix_transpo.h"
 #include <omp.h>
-/*# ifdef _OPENMP
-# include <omp .h>
-# else
-...
-# endif*/
 
-/*
-gcc -fopenmp pi.c
-export OMP_NUM_THREADS=4; ./ a.out+
-*/
 void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transposed,int size)
 {
     timespec start, stop;
@@ -30,8 +21,8 @@ void matTransposeOmp(vector<vector<float>> &raw, vector<vector<float>> &transpos
 
 
     char *env_var = getenv("OMP_NUM_THREADS");
-    FILE* f = fopen("parallelTranspo.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),atoi(env_var), timeElapsed);
+    FILE* f = fopen("parallelTranspo.csv","a+");
+    fprintf(f,"%.f;%i;%lf\n", log2(size),atoi(env_var), timeElapsed);
     fclose(f);
 
     //printf("PARALLEL TRANSPOSITION: %lf\n", timeElapsed);
@@ -58,8 +49,8 @@ bool checkSymOmp(vector<vector<float>> &matrix,int size)
     //printf("PARALLEL CHECK: %lf\n", timeElapsed);
 
     char *env_var = getenv("OMP_NUM_THREADS");
-    FILE* f = fopen("parallelCheck.txt","a+");
-    fprintf(f,"n: %.f, threads: %i, time: %lf\n", log2(size),atoi(env_var), timeElapsed);
+    FILE* f = fopen("parallelCheck.csv","a+");
+    fprintf(f,"%.f;%i;%lf\n", log2(size),atoi(env_var), timeElapsed);
     fclose(f);
 
     return isSymmetric;
