@@ -1,6 +1,6 @@
 #!/bin/bash
 # Job name
-#PBS -N helloc
+#PBS -N Matrix
 # Output files
 #PBS -o ./matrix.o
 #PBS -e ./matrix.e
@@ -20,16 +20,11 @@ g++() {
 
 g++ --version
 
-
-echo "Job running on: $(hostname)"
-
-# Select the working directory (change this line)
+# Select the working directory
 cd /home/david.brugnara/Matrix/
 
-# The code should be compiled before submitting the job
-# gcc -o hello hello.c
 
-# Run hello
+#RUN 
 g++ sequential.cpp -c -o sequential.o
 g++ parallel.cpp -c -o parallel.o -fopenmp
 g++ implicit.cpp -c -o implicit.o -O2 -march=native -ftree-vectorize
@@ -135,5 +130,4 @@ export OMP_NUM_THREADS=32; ./matrix.out 14
 export OMP_NUM_THREADS=64; ./matrix.out 14
 export OMP_NUM_THREADS=96; ./matrix.out 14
 
-
-#qstat -n id
+lscpu

@@ -1,0 +1,123 @@
+#!/bin/bash
+# Job name
+#PBS -N MATRIX TEST IMPLICIT
+# Output files
+#PBS -o ./tagsAndBlocks.o
+#PBS -e ./tagsAndBlocks.e
+# Queue name
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=6:00:00
+# Number of nodes, cpus, and amount of memory
+#PBS -l select=1:ncpus=96:mem=20mb
+
+# Modules for C
+module load gcc91
+# Define gcc and g++ to use the version 9.1.0
+g++() {
+    g++-9.1.0 "$@"
+}
+
+g++ --version
+
+
+# Select the working directory
+cd /home/david.brugnara/Matrix/
+
+#RUN
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicittags.cpp -c -o implicittags.o
+g++ implicit.cpp -c -o implicit.o
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicittags.o implicit.o main.o -o matrix.out -fopenmp
+
+ ./matrix.out 4
+ ./matrix.out 5
+ ./matrix.out 6
+ ./matrix.out 7
+ ./matrix.out 8
+ ./matrix.out 9
+ ./matrix.out 10
+ ./matrix.out 11
+ ./matrix.out 12
+ ./matrix.out 13
+ ./matrix.out 14
+
+g++ implicit.cpp -c -o implicit.o
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicittags.cpp -c -o implicittags.o -O2
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicittags.o implicit.o main.o -o matrix.out -fopenmp
+
+ ./matrix.out 4
+ ./matrix.out 5
+ ./matrix.out 6
+ ./matrix.out 7
+ ./matrix.out 8
+ ./matrix.out 9
+ ./matrix.out 10
+ ./matrix.out 11
+ ./matrix.out 12
+ ./matrix.out 13
+ ./matrix.out 14
+
+g++ implicit.cpp -c -o implicit.o
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicittags.cpp -c -o implicittags.o -ftree-vectorize -march=native
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicittags.o implicit.o main.o -o matrix.out -fopenmp
+
+ ./matrix.out 4
+ ./matrix.out 5
+ ./matrix.out 6
+ ./matrix.out 7
+ ./matrix.out 8
+ ./matrix.out 9
+ ./matrix.out 10
+ ./matrix.out 11
+ ./matrix.out 12
+ ./matrix.out 13
+ ./matrix.out 14
+
+g++ implicit.cpp -c -o implicit.o
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicittags.cpp -c -o implicittags.o -ftree-vectorize -march=native -fprefetch-loop-arrays
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicittags.o implicit.o main.o -o matrix.out -fopenmp
+
+ ./matrix.out 4
+ ./matrix.out 5
+ ./matrix.out 6
+ ./matrix.out 7
+ ./matrix.out 8
+ ./matrix.out 9
+ ./matrix.out 10
+ ./matrix.out 11
+ ./matrix.out 12
+ ./matrix.out 13
+ ./matrix.out 14
+
+g++ implicit.cpp -c -o implicit.o
+g++ sequential.cpp -c -o sequential.o
+g++ parallel.cpp -c -o parallel.o -fopenmp
+g++ implicittags.cpp -c -o implicittags.o -ftree-vectorize -march=native -fprefetch-loop-arrays -O2
+g++ main.cpp -c -o main.o -fopenmp
+g++ sequential.o parallel.o implicittags.o  implicit.o main.o -o matrix.out -fopenmp 
+
+ ./matrix.out 4
+ ./matrix.out 5
+ ./matrix.out 6
+ ./matrix.out 7
+ ./matrix.out 8
+ ./matrix.out 9
+ ./matrix.out 10
+ ./matrix.out 11
+ ./matrix.out 12
+ ./matrix.out 13
+ ./matrix.out 14
+
+lscpu
