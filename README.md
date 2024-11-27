@@ -13,7 +13,7 @@ The main code includes two distinct test loops, corresponding to the two `.pbs` 
 
 1. **Copy Files**: Copy all relevant files to your cluster directory.
 2. **Specify File Locations**: Update the file paths inside the chosen `.pbs` script to match your cluster directory. 
-3. **Adjust Configuration**: If needed modify the configuration combinations in the code as needed for your specific tests. 
+3. **Adjust Configuration**: If needed modify the enviroment variables in the `.pbs` such as desired queue. 
 4. **Submit the Job**:
    - Use the `qsub` command to submit the job.
    - Example: To run the general test, use the command:
