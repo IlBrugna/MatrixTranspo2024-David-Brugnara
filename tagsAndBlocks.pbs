@@ -1,6 +1,6 @@
 #!/bin/bash
 # Job name
-#PBS -N MATRIX TEST IMPLICIT
+#PBS -N MATRIX_TEST_IMPLICIT
 # Output files
 #PBS -o ./tagsAndBlocks.o
 #PBS -e ./tagsAndBlocks.e
